@@ -11,7 +11,8 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/core';
-import { Logo } from '@components/logo/logo';
+import Logo from '@components/logo';
+import useIsomorphicLayoutEffect from '@utils/useIsoMorphicLayoutEffect';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -225,21 +226,23 @@ const ResponsiveMenus: React.FC = () => {
   );
 };
 
-export const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
+const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useIsomorphicLayoutEffect(() => {
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', () =>
-        setWindowWidth(window.innerWidth),
-      );
+      window.removeEventListener('resize', handleResize);
     };
-  });
+  }, []);
 
   const handleMinimized = () => {
     onMinimized(!minimized);
@@ -301,7 +304,14 @@ export const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
   const renderSidebar = () => {
     if (minimized && windowWidth >= 767) {
       return (
-        <Box pos="fixed" top="56px" h="calc(100vh - 56px)" w="70px" zIndex={2}>
+        <Box
+          pos="fixed"
+          top="56px"
+          h="calc(100vh - 56px)"
+          w="70px"
+          zIndex={2}
+          data-testid="sidebar-minimized"
+        >
           <Scrollbars autoHide>
             <ResponsiveMenus />
           </Scrollbars>
@@ -316,6 +326,7 @@ export const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
         h="calc(100vh - 56px)"
         w={{ base: '100%', sm: '100%', md: '240px' }}
         zIndex={2}
+        data-testid="sidebar"
       >
         <Scrollbars autoHide>
           <Stack spacing={1} py={4}>
@@ -363,6 +374,7 @@ export const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
                 bg="transparent"
                 icon={MdMenu}
                 onClick={handleMinimized}
+                data-testid="sidebar-minimized-toggle"
               />
               <Logo />
             </Stack>
@@ -375,3 +387,5 @@ export const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
 
   return <>{renderSidebar()}</>;
 };
+
+export default Sidebar;

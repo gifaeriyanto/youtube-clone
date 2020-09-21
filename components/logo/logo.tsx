@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/core';
 import React from 'react';
 
-export const Logo: React.FC = () => {
+const Logo: React.FC = () => {
   return (
     <Box h={8} w={24}>
       <svg
@@ -15,6 +15,7 @@ export const Logo: React.FC = () => {
           width: '100%',
           height: '100%',
         }}
+        data-testid="youtube-logo"
       >
         <g
           viewBox="0 0 200 60"
@@ -105,3 +106,5 @@ export const Logo: React.FC = () => {
     </Box>
   );
 };
+
+export default Logo;

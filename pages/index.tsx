@@ -1,25 +1,23 @@
+import { getYoutubeVideos } from '@api/youtubeAPI';
 import { Box, Grid } from '@chakra-ui/core';
-import Navbar from '@components/navbar/navbar';
-import RichItem from '@components/richItem/richItem';
-import { Sidebar } from '@components/sidebar/sidebar';
-import Axios from 'axios';
+import Navbar from '@components/navbar';
+import RichItem from '@components/richItem';
+import Sidebar from '@components/sidebar';
+import { IYoutubeAPIVideosItems } from 'interfaces/youtubeAPI';
 import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 
 const Index: NextPage = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IYoutubeAPIVideosItems[]>([]);
   const [minimizedSidebar, setMinimizedSidebar] = useState(false);
 
   useEffect(() => {
-    Axios.get('https://www.googleapis.com/youtube/v3/videos', {
-      params: {
-        key: 'AIzaSyAFewnugoIUByq1ovYeQmnejyr68fUUVLA',
-        chart: 'mostPopular',
-        part: 'snippet,statistics',
-        maxResults: 20,
-      },
-    }).then((res: any) => {
-      setData(res.data.items);
+    getYoutubeVideos({
+      chart: 'mostPopular',
+      part: 'snippet,statistics',
+      maxResults: 40,
+    }).then((videos) => {
+      setData(videos);
     });
   }, []);
 
@@ -31,7 +29,7 @@ const Index: NextPage = () => {
       title={item.snippet.title}
       channelId={item.snippet.channelId}
       channelTitle={item.snippet.channelTitle}
-      views={item.statistics.viewCount}
+      views={Number(item.statistics.viewCount)}
       publishedAt={item.snippet.publishedAt}
     />
   ));

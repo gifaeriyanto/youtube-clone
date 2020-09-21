@@ -1,5 +1,5 @@
+import { getChannels } from '@api/youtubeAPI';
 import { Avatar, Box, Flex, Heading, Text } from '@chakra-ui/core';
-import Axios from 'axios';
 import { formatDistanceToNow } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import ShortNumber from 'short-number';
@@ -16,7 +16,6 @@ interface IRichItem {
 
 const RichItem: React.FC<IRichItem> = ({
   thumbnail,
-  avatar,
   title,
   channelTitle,
   channelId,
@@ -26,14 +25,11 @@ const RichItem: React.FC<IRichItem> = ({
   const [channelAvatar, setChannelAvatar] = useState('');
 
   useEffect(() => {
-    Axios.get('https://www.googleapis.com/youtube/v3/channels', {
-      params: {
-        id: channelId,
-        key: 'AIzaSyAFewnugoIUByq1ovYeQmnejyr68fUUVLA',
-        part: 'snippet',
-      },
-    }).then((res) => {
-      setChannelAvatar(res.data.items[0].snippet.thumbnails.default.url);
+    getChannels({
+      part: 'snippet',
+      id: channelId,
+    }).then((channels) => {
+      setChannelAvatar(channels[0].snippet.thumbnails.default.url);
     });
   }, [channelId]);
 
@@ -63,7 +59,7 @@ const RichItem: React.FC<IRichItem> = ({
             {channelTitle}
           </Text>
           <Text color="gray.600" fontSize="sm">
-            {ShortNumber(Number(views) || 0)} views -{' '}
+            {ShortNumber(views) || 0} views -{' '}
             {formatDistanceToNow(new Date(publishedAt), { addSuffix: true })}
           </Text>
         </Box>
