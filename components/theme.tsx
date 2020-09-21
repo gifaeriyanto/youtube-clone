@@ -1,14 +1,11 @@
-import { theme } from '@chakra-ui/core';
+import { extendTheme } from '@chakra-ui/core';
 
-export const customTheme = {
-  ...theme,
+export const customTheme = extendTheme({
   colors: {
-    ...theme.colors,
     youtube: '#FF0102',
   },
   fonts: {
-    ...theme.fonts,
     body: 'Roboto, sans-serif',
     heading: 'Roboto, sans-serif',
   },
-};
+});

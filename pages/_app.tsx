@@ -1,4 +1,4 @@
-import { CSSReset, ThemeProvider } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/core';
 import { customTheme } from '@components/theme';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -11,10 +11,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <title>Youtube Clone by Gifa Eriyanto</title>
         <meta name="description" content="Youtube Clone" />
       </Head>
-      <ThemeProvider theme={customTheme}>
-        <CSSReset />
+      <ChakraProvider resetCSS theme={customTheme}>
         <Component {...pageProps} />
-      </ThemeProvider>
+      </ChakraProvider>
     </>
   );
 };

@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Icon,
   IconButton,
   Input,
   InputGroup,
@@ -50,7 +51,7 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
             fontSize="xl"
             color="gray.600"
             bg="transparent"
-            icon={MdMenu}
+            icon={<MdMenu />}
             onClick={handleSidebarToggle}
             data-testid="navbar-minimized-toggle"
           />
@@ -60,24 +61,21 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
       <Flex flex="0 1 728px">
         <InputGroup w="100%">
           <Input placeholder="Search" h={8} pl={3} />
-          <InputRightElement
-            w={16}
-            h={8}
-            children={
-              <IconButton
-                aria-label="Search videos"
-                w="100%"
-                h="calc(2rem - 2px)"
-                mr="1px"
-                px="32px"
-                roundedTopLeft={0}
-                roundedBottomLeft={0}
-                fontSize="xl"
-                color="gray.600"
-                icon={MdSearch}
-              />
-            }
-          />
+          <InputRightElement w={20} h={8} pr={0}>
+            <IconButton
+              aria-label="Search videos"
+              w="100%"
+              h="calc(2rem - 2px)"
+              mr="1px"
+              roundedTopLeft={0}
+              roundedBottomLeft={0}
+              fontSize="xl"
+              color="gray.600"
+              borderLeft="1px"
+              borderColor="gray.200"
+              icon={<MdSearch />}
+            />
+          </InputRightElement>
         </InputGroup>
       </Flex>
       <Flex flex="0 1 728px" justify="flex-end">
@@ -88,7 +86,7 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
             fontSize="xl"
             color="gray.600"
             bg="transparent"
-            icon={MdVideoCall}
+            icon={<MdVideoCall />}
           />
           <Box>
             <Menu>
@@ -138,9 +136,9 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
               textTransform="uppercase"
               fontSize="sm"
               variant="outline"
-              variantColor="blue"
+              colorScheme="blue"
             >
-              <Box as={MdAccountCircle} fontSize="xl" mr={2} />
+              <Icon as={MdAccountCircle} fontSize="xl" mr={2} />
               Sign In
             </Button>
           </Box>

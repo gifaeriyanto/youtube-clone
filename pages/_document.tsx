@@ -1,3 +1,4 @@
+import { ColorModeScript } from '@chakra-ui/core';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 
@@ -19,6 +20,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
         </Head>
         <body>
+          <ColorModeScript />
           <Main />
           <NextScript />
         </body>

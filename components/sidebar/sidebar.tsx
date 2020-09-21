@@ -372,7 +372,7 @@ const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
                 fontSize="xl"
                 color="gray.600"
                 bg="transparent"
-                icon={MdMenu}
+                icon={<MdMenu />}
                 onClick={handleMinimized}
                 data-testid="sidebar-minimized-toggle"
               />
