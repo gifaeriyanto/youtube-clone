@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import {
+  IYoutubeAPIChannels,
   IYoutubeAPIVideos,
   IYoutubeAPIVideosItems,
 } from 'interfaces/youtubeAPI';
@@ -9,7 +10,7 @@ const key = process.env.YOUTUBE_API_KEY;
 
 interface IGetYoutubeVideosParams {
   part: string;
-  chart: string;
+  chart?: string;
   id?: string;
   maxResults?: number;
   myRating?: 'like' | 'dislike';
@@ -20,6 +21,14 @@ interface IGetYoutubeChannelsParams {
   id?: string;
   maxResults?: number;
   myRating?: 'like' | 'dislike';
+}
+
+interface ISearchYoutubeVideosParams {
+  part: string;
+  type: string;
+  id?: string;
+  maxResults?: number;
+  relatedToVideoId?: string;
 }
 
 export const getYoutubeVideos = (
@@ -37,9 +46,47 @@ export const getYoutubeVideos = (
   });
 };
 
-export const getChannels = (params: IGetYoutubeChannelsParams) => {
+export const getYoutubeVideoRating = (
+  params: IGetYoutubeVideosParams,
+): Promise<IYoutubeAPIVideosItems[]> => {
+  return new Promise((resolve) => {
+    Axios.get(baseUrl + 'videos/rating', {
+      params: {
+        key,
+        ...params,
+      },
+    }).then((res: { data: IYoutubeAPIVideos }) => {
+      resolve(res.data.items);
+    });
+  });
+};
+
+export const getYoutubeChannels = (
+  params: IGetYoutubeChannelsParams,
+): Promise<IYoutubeAPIChannels[]> => {
   return new Promise((resolve) => {
     Axios.get(baseUrl + 'channels', {
+      params: {
+        key,
+        ...params,
+      },
+    }).then(
+      (res: {
+        data: {
+          items: IYoutubeAPIChannels[];
+        };
+      }) => {
+        resolve(res.data.items);
+      },
+    );
+  });
+};
+
+export const searchYoutubeVideos = (
+  params: ISearchYoutubeVideosParams,
+): Promise<IYoutubeAPIVideosItems[]> => {
+  return new Promise((resolve) => {
+    Axios.get(baseUrl + 'search', {
       params: {
         key,
         ...params,

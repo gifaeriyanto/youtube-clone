@@ -41,7 +41,7 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
       pos="fixed"
       w="100%"
       bg="#fff"
-      zIndex={3}
+      zIndex={1}
     >
       <Flex flex="0 1 728px">
         <Stack spacing={2} align="center" isInline>

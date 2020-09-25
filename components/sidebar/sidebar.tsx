@@ -39,6 +39,7 @@ const Scrollbars = dynamic(() => import('react-custom-scrollbars'), {
 interface ISidebar {
   minimized: boolean;
   onMinimized: (value: boolean) => void;
+  isOnDrawer?: boolean;
 }
 
 type TMENUS = {
@@ -99,31 +100,31 @@ const MENUS: TMENUS = [
       {
         label: 'Sports',
         iconImage:
-          'https://yt3.ggpht.com/7pEnMBenda_jk32LIvQLyHKseE-G1UtUx0eXUr3sjV6KcRC5H_FSRZxT2votEuqwkjrSHHpF=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/7pEnMBenda_jk32LIvQLyHKseE-G1UtUx0eXUr3sjV6KcRC5H_FSRZxT2votEuqwkjrSHHpF=s88-c-k-c0xffffffff-no-nd-rj',
         link: '/sports',
       },
       {
         label: 'Gaming',
         iconImage:
-          'https://yt3.ggpht.com/je7LbnIyJTQLS27L6HAE26dvIc98IeyuJZv-xyQz2qpu4xaepg8IyhmC51cHH4s3FmIOaFTP=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/je7LbnIyJTQLS27L6HAE26dvIc98IeyuJZv-xyQz2qpu4xaepg8IyhmC51cHH4s3FmIOaFTP=s88-c-k-c0xffffffff-no-nd-rj',
         link: '/gaming',
       },
       {
         label: 'News',
         iconImage:
-          'https://yt3.ggpht.com/pG7Ph-r8Ti14EgMy9VnPbV4SXHoqFr5SHfMIaO4JilUwGYdGiBGirB9V8on7dutlC3fwVXSp=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/RMsRDfy7X7f7Wo3aZEofaZXAqMiyIi8UUZe188kwJ9DJTg8aEWDrqlVW8ktFyKhy9kUmgIR90So=s88-c-k-c0xffffffff-no-nd-rj',
         link: '/news',
       },
       {
         label: 'Live',
         iconImage:
-          'https://yt3.ggpht.com/8D6JlsnvwDZFMdcbjqVji82kggP3aXXbO-yBD0RFrKlp4G1zNt9wcqcVTSPnAI8GuUAbDYQwsg=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/8D6JlsnvwDZFMdcbjqVji82kggP3aXXbO-yBD0RFrKlp4G1zNt9wcqcVTSPnAI8GuUAbDYQwsg=s88-c-k-c0xffffffff-no-nd-rj',
         link: '/live',
       },
       {
         label: '360° Video',
         iconImage:
-          'https://yt3.ggpht.com/fmOS9pbEO9CB6wbhvRsKFKv4h2z7_O3fFm9hgI14FHtxQa2WHlPPKQMPraiVA608d2jvJFyMrg=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/fmOS9pbEO9CB6wbhvRsKFKv4h2z7_O3fFm9hgI14FHtxQa2WHlPPKQMPraiVA608d2jvJFyMrg=s88-c-k-c0xffffffff-no-nd-rj',
         link: '/360-video',
       },
     ],
@@ -226,7 +227,11 @@ const ResponsiveMenus: React.FC = () => {
   );
 };
 
-const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
+const Sidebar: React.FC<ISidebar> = ({
+  minimized,
+  onMinimized,
+  isOnDrawer,
+}) => {
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -302,7 +307,7 @@ const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
   });
 
   const renderSidebar = () => {
-    if (minimized && windowWidth >= 767) {
+    if (!isOnDrawer && minimized && windowWidth >= 767) {
       return (
         <Box
           pos="fixed"
@@ -310,6 +315,7 @@ const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
           h="calc(100vh - 56px)"
           w="70px"
           zIndex={2}
+          bg="#fff"
           data-testid="sidebar-minimized"
         >
           <Scrollbars autoHide>
@@ -326,6 +332,7 @@ const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
         h="calc(100vh - 56px)"
         w={{ base: '100%', sm: '100%', md: '240px' }}
         zIndex={2}
+        bg="#fff"
         data-testid="sidebar"
       >
         <Scrollbars autoHide>
@@ -359,11 +366,11 @@ const Sidebar: React.FC<ISidebar> = ({ minimized, onMinimized }) => {
     );
   };
 
-  if (windowWidth < 767) {
+  if (isOnDrawer || windowWidth < 767) {
     return (
       <Drawer placement="left" isOpen={minimized} onClose={handleMinimized}>
-        <DrawerOverlay />
-        <DrawerContent>
+        <DrawerOverlay zIndex={2} />
+        <DrawerContent maxW="240px" zIndex={2}>
           <DrawerHeader borderBottomWidth="1px">
             <Stack spacing={2} align="center" isInline>
               <IconButton

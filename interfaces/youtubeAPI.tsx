@@ -2,8 +2,8 @@ export interface IYoutubeAPIVideosItems {
   kind: string;
   etag: string;
   id: string;
-  snippet: {
-    publishedAt: Date;
+  snippet?: {
+    publishedAt: string;
     channelId: string;
     title: string;
     description: string;
@@ -15,25 +15,26 @@ export interface IYoutubeAPIVideosItems {
       };
     };
     channelTitle: string;
-    tags: [string];
+    tags: string[];
     categoryId: string;
     liveBroadcastContent: string;
-    defaultLanguage: string;
     localized: {
       title: string;
       description: string;
     };
-    defaultAudioLanguage: string;
+    publishTime?: string;
+    defaultLanguage?: string;
+    defaultAudioLanguage?: string;
   };
-  contentDetails: {
+  contentDetails?: {
     duration: string;
     dimension: string;
     definition: string;
     caption: string;
     licensedContent: boolean;
     regionRestriction: {
-      allowed: [string];
-      blocked: [string];
+      allowed: string[];
+      blocked: string[];
     };
     contentRating: {
       acbRating: string;
@@ -109,39 +110,39 @@ export interface IYoutubeAPIVideosItems {
     projection: string;
     hasCustomThumbnail: boolean;
   };
-  status: {
+  status?: {
     uploadStatus: string;
     failureReason: string;
     rejectionReason: string;
     privacyStatus: string;
-    publishAt: Date;
+    publishAt: Date | string;
     license: string;
     embeddable: boolean;
     publicStatsViewable: boolean;
     madeForKids: boolean;
     selfDeclaredMadeForKids: boolean;
   };
-  statistics: {
+  statistics?: {
     viewCount: string;
     likeCount: string;
     dislikeCount: string;
     favoriteCount: string;
     commentCount: string;
   };
-  player: {
+  player?: {
     embedHtml: string;
     embedHeight: string;
     embedWidth: string;
   };
-  topicDetails: {
-    topicIds: [string];
-    relevantTopicIds: [string];
-    topicCategories: [string];
+  topicDetails?: {
+    topicIds: string[];
+    relevantTopicIds: string[];
+    topicCategories: string[];
   };
-  recordingDetails: {
-    recordingDate: Date;
+  recordingDetails?: {
+    recordingDate: Date | string;
   };
-  fileDetails: {
+  fileDetails?: {
     fileName: string;
     fileSize: string;
     fileType: string;
@@ -166,7 +167,7 @@ export interface IYoutubeAPIVideosItems {
     bitrateBps: string;
     creationTime: string;
   };
-  processingDetails: {
+  processingDetails?: {
     processingStatus: string;
     processingProgress: {
       partsTotal: string;
@@ -180,25 +181,25 @@ export interface IYoutubeAPIVideosItems {
     editorSuggestionsAvailability: string;
     thumbnailsAvailability: string;
   };
-  suggestions: {
-    processingErrors: [string];
-    processingWarnings: [string];
-    processingHints: [string];
+  suggestions?: {
+    processingErrors: string[];
+    processingWarnings: string[];
+    processingHints: string[];
     tagSuggestions: {
       tag: string;
-      categoryRestricts: [string];
+      categoryRestricts: string[];
     }[];
-    editorSuggestions: [string];
+    editorSuggestions: string[];
   };
-  liveStreamingDetails: {
-    actualStartTime: Date;
-    actualEndTime: Date;
-    scheduledStartTime: Date;
-    scheduledEndTime: Date;
+  liveStreamingDetails?: {
+    actualStartTime: Date | string;
+    actualEndTime: Date | string;
+    scheduledStartTime: Date | string;
+    scheduledEndTime: Date | string;
     concurrentViewers: string;
     activeLiveChatId: string;
   };
-  localizations: {
+  localizations?: {
     [key: string]: {
       title: string;
       description: string;
@@ -226,7 +227,7 @@ export interface IYoutubeAPIChannels {
     title: string;
     description: string;
     customUrl: string;
-    publishedAt: Date;
+    publishedAt: string;
     thumbnails: {
       [key: string]: {
         url: string;
@@ -255,8 +256,8 @@ export interface IYoutubeAPIChannels {
     videoCount: string;
   };
   topicDetails: {
-    topicIds: [string];
-    topicCategories: [string];
+    topicIds: string[];
+    topicCategories: string[];
   };
   status: {
     privacyStatus: string;
@@ -276,7 +277,7 @@ export interface IYoutubeAPIChannels {
       showRelatedChannels: boolean;
       showBrowseView: boolean;
       featuredChannelsTitle: string;
-      featuredChannelsUrls: [string];
+      featuredChannelsUrls: string[];
       unsubscribedTrailer: string;
       profileColor: string;
       defaultLanguage: string;
@@ -296,7 +297,7 @@ export interface IYoutubeAPIChannels {
   };
   contentOwnerDetails: {
     contentOwner: string;
-    timeLinked: Date;
+    timeLinked: Date | string;
   };
   localizations: (
     key,

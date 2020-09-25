@@ -1,9 +1,10 @@
 import { getYoutubeVideos } from '@api/youtubeAPI';
-import { Box, Grid } from '@chakra-ui/core';
+import { Grid } from '@chakra-ui/core';
 import Navbar from '@components/navbar';
 import RichItem from '@components/richItem';
 import Sidebar from '@components/sidebar';
 import { IYoutubeAPIVideosItems } from 'interfaces/youtubeAPI';
+import MainLayout from 'layouts/main';
 import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 
@@ -24,7 +25,11 @@ const Index: NextPage = () => {
   const listData = data.map((item) => (
     <RichItem
       key={item.id}
-      thumbnail={item.snippet.thumbnails.standard.url}
+      id={item.id}
+      thumbnail={
+        item.snippet.thumbnails.standard?.url ||
+        item.snippet.thumbnails.medium?.url
+      }
       avatar={item.snippet.thumbnails.default.url}
       title={item.snippet.title}
       channelId={item.snippet.channelId}
@@ -38,16 +43,7 @@ const Index: NextPage = () => {
     <>
       <Navbar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <Sidebar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
-      <Box
-        pl={{
-          base: '50px',
-          sm: '50px',
-          md: minimizedSidebar ? '140px' : '270px',
-        }}
-        pr="50px"
-        pt="80px"
-        pb="100px"
-      >
+      <MainLayout variant={minimizedSidebar ? 'onMinimized' : undefined}>
         <Grid
           templateColumns={{
             sm: 'repeat(1, 1fr)',
@@ -58,7 +54,7 @@ const Index: NextPage = () => {
         >
           {listData}
         </Grid>
-      </Box>
+      </MainLayout>
     </>
   );
 };
