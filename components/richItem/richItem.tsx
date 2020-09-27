@@ -1,4 +1,4 @@
-import { getYoutubeChannels } from '@api/youtubeAPI';
+import { useChannelDetail } from '@api/youtubeAPI';
 import { Avatar, Box, Flex, Heading, Text } from '@chakra-ui/core';
 import { formatDistanceToNow } from 'date-fns';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ interface IRichItem {
   title: string;
   channelTitle: string;
   channelId: string;
-  views: number;
+  views?: number;
   publishedAt: string;
   variant?: 'small' | 'normal';
 }
@@ -28,29 +28,27 @@ const RichItem: React.FC<IRichItem> = ({
   variant,
 }) => {
   const [channelAvatar, setChannelAvatar] = useState('');
+  const { status, data } = useChannelDetail(channelId);
 
   useEffect(() => {
-    getYoutubeChannels({
-      part: 'snippet',
-      id: channelId,
-    }).then((channels) => {
-      setChannelAvatar(channels[0].snippet.thumbnails.default.url);
-    });
-  }, [channelId]);
+    if (status === 'success') {
+      setChannelAvatar(data[0]?.snippet.thumbnails.default.url);
+    }
+  }, [status]);
 
   if (variant === 'small') {
     return (
       <Link
         href={{
           pathname: '/watch',
-          query: { v: id },
+          query: { v: typeof id === 'string' ? id : (id as any).videoId },
         }}
       >
         <Box cursor="pointer" as="a">
           <Flex>
             <Box
               w="200px"
-              h="120px"
+              h="100px"
               bgImage={`url(${thumbnail})`}
               bgPos="center"
               bgSize="cover"
@@ -71,7 +69,7 @@ const RichItem: React.FC<IRichItem> = ({
                 {channelTitle}
               </Text>
               <Text color="gray.600" fontSize="0.8rem">
-                {ShortNumber(views)} views -{' '}
+                {views && `${ShortNumber(views)} views - `}
                 {formatDistanceToNow(new Date(publishedAt), {
                   addSuffix: true,
                 })}
@@ -121,7 +119,7 @@ const RichItem: React.FC<IRichItem> = ({
               {channelTitle}
             </Text>
             <Text color="gray.600" fontSize="sm">
-              {ShortNumber(views)} views -{' '}
+              {views && `${ShortNumber(views)} views - `}
               {formatDistanceToNow(new Date(publishedAt), { addSuffix: true })}
             </Text>
           </Box>

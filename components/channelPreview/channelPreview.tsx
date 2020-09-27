@@ -1,10 +1,10 @@
 import { Avatar, Box, Button, Collapse, Flex, Text } from '@chakra-ui/core';
-import { IYoutubeAPIChannels } from 'interfaces/youtubeAPI';
+import { IYoutubeAPIChannelItem } from 'interfaces/youtubeAPI';
 import React, { useState } from 'react';
 import ShortNumber from 'short-number';
 
 interface IChannelPreview {
-  data: IYoutubeAPIChannels;
+  data: IYoutubeAPIChannelItem;
 }
 
 const ChannelPreview: React.FC<IChannelPreview> = ({ data }) => {

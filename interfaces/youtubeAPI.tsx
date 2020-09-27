@@ -1,4 +1,4 @@
-export interface IYoutubeAPIVideosItems {
+export interface IYoutubeAPIVideoItem {
   kind: string;
   etag: string;
   id: string;
@@ -216,10 +216,10 @@ export interface IYoutubeAPIVideos {
     totalResults: number;
     resultsPerPage: number;
   };
-  items: IYoutubeAPIVideosItems[];
+  items: IYoutubeAPIVideoItem[];
 }
 
-export interface IYoutubeAPIChannels {
+export interface IYoutubeAPIChannelItem {
   kind: string;
   etag: string;
   id: string;
@@ -251,7 +251,7 @@ export interface IYoutubeAPIChannels {
   };
   statistics: {
     viewCount: string;
-    subscriberCount: string; // this value is rounded to three significant figures
+    subscriberCount: string;
     hiddenSubscriberCount: boolean;
     videoCount: string;
   };
@@ -305,4 +305,8 @@ export interface IYoutubeAPIChannels {
     title: string;
     description: string;
   };
+}
+
+export interface IYoutubeAPIChannels extends Omit<IYoutubeAPIVideos, 'items'> {
+  items: IYoutubeAPIChannelItem[];
 }

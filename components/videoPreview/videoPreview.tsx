@@ -8,7 +8,7 @@ import {
   Text,
 } from '@chakra-ui/core';
 import { formatDistanceToNow } from 'date-fns';
-import { IYoutubeAPIVideosItems } from 'interfaces/youtubeAPI';
+import { IYoutubeAPIVideoItem } from 'interfaces/youtubeAPI';
 import React from 'react';
 import { IoMdShareAlt } from 'react-icons/io';
 import { MdPlaylistAdd, MdThumbDown, MdThumbUp } from 'react-icons/md';
@@ -18,7 +18,7 @@ import ShortNumber from 'short-number';
 interface IVideoPreview {
   width?: string;
   height?: string;
-  data: IYoutubeAPIVideosItems;
+  data: IYoutubeAPIVideoItem;
 }
 
 const VideoPreview: React.FC<IVideoPreview> = ({ width, height, data }) => {
