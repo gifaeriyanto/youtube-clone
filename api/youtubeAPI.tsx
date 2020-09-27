@@ -116,18 +116,3 @@ export const useRelatedVideos = (
     },
   );
 };
-
-export const searchYoutubeVideos = (
-  params: ISearchYoutubeVideosParams,
-): Promise<IYoutubeAPIVideoItem[]> => {
-  return new Promise((resolve) => {
-    Axios.get(baseUrl + 'search', {
-      params: {
-        key,
-        ...params,
-      },
-    }).then((res: { data: IYoutubeAPIVideos }) => {
-      resolve(res.data.items);
-    });
-  });
-};
