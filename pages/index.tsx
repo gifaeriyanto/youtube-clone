@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 
 const Index: NextPage = () => {
   const [minimizedSidebar, setMinimizedSidebar] = useState(false);
-  const { isSuccess, data } = useVideos({
+  const { isSuccess, data, error } = useVideos({
     limit: 40,
   });
 
@@ -23,6 +23,7 @@ const Index: NextPage = () => {
       <Navbar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <Sidebar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <MainLayout variant={minimizedSidebar ? 'onMinimized' : undefined}>
+        {error && <span>{(error as any).message}</span>}
         {isSuccess && (
           <Grid
             templateColumns={{
