@@ -1,5 +1,5 @@
 import { useVideos } from '@api/youtubeAPI';
-import { Grid } from '@chakra-ui/core';
+import { Box, Grid, Text } from '@chakra-ui/core';
 import Navbar from '@components/navbar';
 import RichItem from '@components/richItem';
 import Sidebar from '@components/sidebar';
@@ -23,7 +23,21 @@ const Index: NextPage = () => {
       <Navbar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <Sidebar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <MainLayout variant={minimizedSidebar ? 'onMinimized' : undefined}>
-        {error && <span>{(error as any).message}</span>}
+        {error && (
+          <Box textAlign="center" pt={12}>
+            <Text fontSize="30px" fontWeight="bold">
+              {(error as any).response.status}
+            </Text>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: (error as any).response.data.error.message,
+              }}
+            />
+            {(error as any).response.status === 403 && (
+              <span> Please try again tomorrow!</span>
+            )}
+          </Box>
+        )}
         {isSuccess && (
           <Grid
             templateColumns={{

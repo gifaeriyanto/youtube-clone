@@ -30,6 +30,7 @@ const MainLayout: React.FC<IMainLayout> = ({ variant, children }) => {
       pt="80px"
       pb="100px"
       bg="gray.50"
+      minH="100vh"
     >
       {variant === 'onDrawer' ? (
         <Container maxW="calc(100vw - 100px)">{children}</Container>
