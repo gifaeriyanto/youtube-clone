@@ -65,12 +65,12 @@ const MENUS: TMENUS = [
       {
         label: 'Trending',
         icon: FaFire,
-        link: '/trending',
+        link: '#',
       },
       {
         label: 'Subscription',
         icon: MdSubscriptions,
-        link: '/subscription',
+        link: '#',
       },
     ],
   },
@@ -79,12 +79,12 @@ const MENUS: TMENUS = [
       {
         label: 'Library',
         icon: MdVideoLibrary,
-        link: '/library',
+        link: '#',
       },
       {
         label: 'History',
         icon: MdHistory,
-        link: '/history',
+        link: '#',
       },
     ],
   },
@@ -95,37 +95,37 @@ const MENUS: TMENUS = [
         label: 'Music',
         iconImage:
           '//yt3.ggpht.com/X2lg7AJrz6BRu8Lq5S-Ke5XrXIT_le5TlBcS10ik-YO5njQJGRPc4fTlefugAi5ha_3FieqcXQ=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '/music',
+        link: '#',
       },
       {
         label: 'Sports',
         iconImage:
           '//yt3.ggpht.com/7pEnMBenda_jk32LIvQLyHKseE-G1UtUx0eXUr3sjV6KcRC5H_FSRZxT2votEuqwkjrSHHpF=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '/sports',
+        link: '#',
       },
       {
         label: 'Gaming',
         iconImage:
           '//yt3.ggpht.com/je7LbnIyJTQLS27L6HAE26dvIc98IeyuJZv-xyQz2qpu4xaepg8IyhmC51cHH4s3FmIOaFTP=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '/gaming',
+        link: '#',
       },
       {
         label: 'News',
         iconImage:
           '//yt3.ggpht.com/RMsRDfy7X7f7Wo3aZEofaZXAqMiyIi8UUZe188kwJ9DJTg8aEWDrqlVW8ktFyKhy9kUmgIR90So=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '/news',
+        link: '#',
       },
       {
         label: 'Live',
         iconImage:
           '//yt3.ggpht.com/8D6JlsnvwDZFMdcbjqVji82kggP3aXXbO-yBD0RFrKlp4G1zNt9wcqcVTSPnAI8GuUAbDYQwsg=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '/live',
+        link: '#',
       },
       {
         label: '360° Video',
         iconImage:
           '//yt3.ggpht.com/fmOS9pbEO9CB6wbhvRsKFKv4h2z7_O3fFm9hgI14FHtxQa2WHlPPKQMPraiVA608d2jvJFyMrg=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '/360-video',
+        link: '#',
       },
     ],
   },
@@ -134,7 +134,7 @@ const MENUS: TMENUS = [
       {
         label: 'Browse channels',
         icon: MdAddCircle,
-        link: '/channels',
+        link: '#',
       },
     ],
   },
@@ -144,12 +144,12 @@ const MENUS: TMENUS = [
       {
         label: 'YouTube Premium',
         icon: FaYoutube,
-        link: '/premium',
+        link: '#',
       },
       {
         label: 'Live',
         icon: BiStation,
-        link: '/live',
+        link: '#',
       },
     ],
   },
@@ -158,22 +158,22 @@ const MENUS: TMENUS = [
       {
         label: 'Settings',
         icon: MdSettings,
-        link: '/settings',
+        link: '#',
       },
       {
         label: 'Report history',
         icon: MdFlag,
-        link: '/report-history',
+        link: '#',
       },
       {
         label: 'Help',
         icon: MdHelp,
-        link: '/help',
+        link: '#',
       },
       {
         label: 'Send feedback',
         icon: MdAnnouncement,
-        link: '/send-feedback',
+        link: '#',
       },
     ],
   },
