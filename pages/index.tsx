@@ -1,5 +1,5 @@
 import { useVideos } from '@api/youtubeAPI';
-import { Box, Grid, Text } from '@chakra-ui/core';
+import { Grid } from '@chakra-ui/core';
 import Error from '@components/error';
 import Navbar from '@components/navbar';
 import RichItem from '@components/richItem';
