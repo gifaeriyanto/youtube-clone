@@ -5,6 +5,7 @@ import {
 } from '@api/youtubeAPI';
 import { Box, Grid } from '@chakra-ui/core';
 import ChannelPreview from '@components/channelPreview';
+import Error from '@components/error';
 import Navbar from '@components/navbar';
 import RichItem from '@components/richItem';
 import Sidebar from '@components/sidebar';
@@ -21,9 +22,11 @@ const Index: NextPage = () => {
   const [maximizedSidebar, setMaximizedSidebar] = useState(false);
   const [videoHeight, setVideoHeight] = useState(0);
   const videoWrapper = useRef<HTMLDivElement>(null);
-  const { isSuccess: isSuccessVideoData, data: videoData } = useVideoDetail(
-    router.query.v as string,
-  );
+  const {
+    isSuccess: isSuccessVideoData,
+    data: videoData,
+    error,
+  } = useVideoDetail(router.query.v as string);
   const {
     isSuccess: isSuccessChannelData,
     data: channelData,
@@ -55,9 +58,22 @@ const Index: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Youtube Clone by Gifa Eriyanto</title>
-        <meta name="description" content="Youtube Clone" />
+        {isSuccessVideoData ? (
+          <>
+            <title>{videoData.items[0].snippet.title}</title>
+            <meta
+              name="description"
+              content={videoData.items[0].snippet.description}
+            />
+          </>
+        ) : (
+          <>
+            <title>Youtube Clone by Gifa Eriyanto</title>
+            <meta name="description" content="Youtube Clone" />
+          </>
+        )}
       </Head>
+
       <Navbar onMinimized={setMaximizedSidebar} minimized={maximizedSidebar} />
       <Sidebar
         onMinimized={setMaximizedSidebar}
@@ -65,6 +81,12 @@ const Index: NextPage = () => {
         isOnDrawer
       />
       <MainLayout variant="onDrawer">
+        {error && (
+          <Error
+            status={(error as any).response.status}
+            message={(error as any).response.data.error.message}
+          />
+        )}
         <Grid
           templateColumns={{
             sm: 'repeat(1, 1fr)',
@@ -102,7 +124,7 @@ const Index: NextPage = () => {
                       channelId={item.snippet.channelId}
                       channelTitle={item.snippet.channelTitle}
                       publishedAt={item.snippet.publishedAt}
-                      variant="small"
+                      variant="list-small"
                     />
                   </Box>
                 ))}

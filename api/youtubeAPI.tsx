@@ -116,3 +116,24 @@ export const useRelatedVideos = (
     },
   );
 };
+
+export const useSearchVideos = (
+  keyword: string,
+  { limit }: IGetYoutubeVideosParams,
+) => {
+  return useQuery('searchVideos', async () => {
+    const { data }: AxiosResponse<IYoutubeAPIVideos> = await Axios.get(
+      baseUrl + 'search',
+      {
+        params: {
+          key,
+          part: 'snippet',
+          type: 'video',
+          q: keyword,
+          maxResults: limit,
+        },
+      },
+    );
+    return data;
+  });
+};

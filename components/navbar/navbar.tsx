@@ -14,7 +14,8 @@ import {
   Stack,
 } from '@chakra-ui/core';
 import Logo from '@components/logo';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import {
   MdAccountCircle,
   MdApps,
@@ -30,8 +31,29 @@ interface INavbar {
 }
 
 const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
+  const [searchValue, setSearchValue] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof router.query.search_query === 'string') {
+      setSearchValue(router.query.search_query);
+    }
+  }, [router]);
+
   const handleSidebarToggle = () => {
     onMinimized(!minimized);
+  };
+
+  const handleSearch = () => {
+    if (searchValue) {
+      router.push(`/result?search_query=${searchValue}`);
+    }
+  };
+
+  const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   return (
@@ -60,7 +82,14 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
       </Flex>
       <Flex flex="0 1 728px">
         <InputGroup w="100%">
-          <Input placeholder="Search" h={8} pl={3} />
+          <Input
+            placeholder="Search"
+            h={8}
+            pl={3}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.currentTarget.value)}
+            onKeyDown={handleSearchEnter}
+          />
           <InputRightElement w={20} h={8} pr={0}>
             <IconButton
               aria-label="Search videos"
@@ -74,6 +103,7 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
               borderLeft="1px"
               borderColor="gray.200"
               icon={<MdSearch />}
+              onClick={handleSearch}
             />
           </InputRightElement>
         </InputGroup>

@@ -1,5 +1,6 @@
 import { useVideos } from '@api/youtubeAPI';
 import { Box, Grid, Text } from '@chakra-ui/core';
+import Error from '@components/error';
 import Navbar from '@components/navbar';
 import RichItem from '@components/richItem';
 import Sidebar from '@components/sidebar';
@@ -20,23 +21,15 @@ const Index: NextPage = () => {
         <title>Youtube Clone by Gifa Eriyanto</title>
         <meta name="description" content="Youtube Clone" />
       </Head>
+
       <Navbar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <Sidebar onMinimized={setMinimizedSidebar} minimized={minimizedSidebar} />
       <MainLayout variant={minimizedSidebar ? 'onMinimized' : undefined}>
         {error && (
-          <Box textAlign="center" pt={12}>
-            <Text fontSize="30px" fontWeight="bold">
-              {(error as any).response.status}
-            </Text>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: (error as any).response.data.error.message,
-              }}
-            />
-            {(error as any).response.status === 403 && (
-              <span> Please try again tomorrow!</span>
-            )}
-          </Box>
+          <Error
+            status={(error as any).response.status}
+            message={(error as any).response.data.error.message}
+          />
         )}
         {isSuccess && (
           <Grid
