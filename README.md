@@ -1,6 +1,6 @@
 # youtube-clone
 
-I made this project just to learn chakra-ui and react-query :)
+I made this project just to learn [chakra-ui](https://next.chakra-ui.com/) and [react-query](https://react-query.tanstack.com/) :)
 
 ### Features
 ✅ Popular Videos
