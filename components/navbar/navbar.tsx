@@ -1,21 +1,29 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Icon,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
+  Link as CLink,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Stack,
+  Text,
 } from '@chakra-ui/core';
 import Logo from '@components/logo';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import {
+  AiFillGithub,
+  AiFillLinkedin,
+  AiFillMediumSquare,
+} from 'react-icons/ai';
 import {
   MdAccountCircle,
   MdApps,
@@ -127,15 +135,18 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
                 bg="transparent"
                 fontSize="xl"
                 color="gray.600"
+                textAlign="center"
               >
                 <MdApps />
               </MenuButton>
-              <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+              <MenuList fontSize="sm">
+                <MenuItem>YouTube TV</MenuItem>
+                <Divider />
+                <MenuItem>YouTube Music</MenuItem>
+                <MenuItem>YouTube Kids</MenuItem>
+                <Divider />
+                <MenuItem>Creator Academy</MenuItem>
+                <MenuItem>YouTube for Artists</MenuItem>
               </MenuList>
             </Menu>
           </Box>
@@ -148,15 +159,22 @@ const Navbar: React.FC<INavbar> = ({ minimized, onMinimized }) => {
                 bg="transparent"
                 fontSize="xl"
                 color="gray.600"
+                textAlign="center"
               >
                 <MdMoreVert />
               </MenuButton>
               <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+                <MenuItem>
+                  <CLink
+                    href="https://github.com/gifaeriyanto/youtube-clone"
+                    isExternal
+                  >
+                    <Flex align="center">
+                      <Icon as={AiFillGithub} mr={2} fontSize="lg" />
+                      <Text fontSize="sm">Github Repository</Text>
+                    </Flex>
+                  </CLink>
+                </MenuItem>
               </MenuList>
             </Menu>
           </Box>
