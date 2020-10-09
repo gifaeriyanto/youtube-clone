@@ -1,4 +1,5 @@
 import {
+  useBreakpointValue,
   Box,
   Divider,
   Drawer,
@@ -12,25 +13,11 @@ import {
   Text,
 } from '@chakra-ui/core';
 import Logo from '@components/logo';
-import useIsomorphicLayoutEffect from '@utils/useIsoMorphicLayoutEffect';
+import { menusData } from '@components/sidebar/menusData';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { IconType } from 'react-icons';
-import { BiStation } from 'react-icons/bi';
-import { FaFire, FaYoutube } from 'react-icons/fa';
-import {
-  MdAddCircle,
-  MdAnnouncement,
-  MdFlag,
-  MdHelp,
-  MdHistory,
-  MdHome,
-  MdMenu,
-  MdSettings,
-  MdSubscriptions,
-  MdVideoLibrary,
-} from 'react-icons/md';
+import React from 'react';
+import { MdMenu } from 'react-icons/md';
 
 const Scrollbars = dynamic(() => import('react-custom-scrollbars'), {
   ssr: false,
@@ -41,143 +28,6 @@ interface ISidebar {
   onMinimized: (value: boolean) => void;
   isOnDrawer?: boolean;
 }
-
-type TMENUS = {
-  menus: {
-    label: string;
-    link: string;
-    icon?: IconType;
-    iconImage?: string;
-    active?: boolean;
-  }[];
-  title?: string;
-}[];
-
-const MENUS: TMENUS = [
-  {
-    menus: [
-      {
-        label: 'Home',
-        icon: MdHome,
-        link: '/',
-        active: true,
-      },
-      {
-        label: 'Trending',
-        icon: FaFire,
-        link: '#',
-      },
-      {
-        label: 'Subscription',
-        icon: MdSubscriptions,
-        link: '#',
-      },
-    ],
-  },
-  {
-    menus: [
-      {
-        label: 'Library',
-        icon: MdVideoLibrary,
-        link: '#',
-      },
-      {
-        label: 'History',
-        icon: MdHistory,
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'Best of youtube',
-    menus: [
-      {
-        label: 'Music',
-        iconImage:
-          '//yt3.ggpht.com/X2lg7AJrz6BRu8Lq5S-Ke5XrXIT_le5TlBcS10ik-YO5njQJGRPc4fTlefugAi5ha_3FieqcXQ=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '#',
-      },
-      {
-        label: 'Sports',
-        iconImage:
-          '//yt3.ggpht.com/7pEnMBenda_jk32LIvQLyHKseE-G1UtUx0eXUr3sjV6KcRC5H_FSRZxT2votEuqwkjrSHHpF=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '#',
-      },
-      {
-        label: 'Gaming',
-        iconImage:
-          '//yt3.ggpht.com/je7LbnIyJTQLS27L6HAE26dvIc98IeyuJZv-xyQz2qpu4xaepg8IyhmC51cHH4s3FmIOaFTP=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '#',
-      },
-      {
-        label: 'News',
-        iconImage:
-          '//yt3.ggpht.com/RMsRDfy7X7f7Wo3aZEofaZXAqMiyIi8UUZe188kwJ9DJTg8aEWDrqlVW8ktFyKhy9kUmgIR90So=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '#',
-      },
-      {
-        label: 'Live',
-        iconImage:
-          '//yt3.ggpht.com/8D6JlsnvwDZFMdcbjqVji82kggP3aXXbO-yBD0RFrKlp4G1zNt9wcqcVTSPnAI8GuUAbDYQwsg=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '#',
-      },
-      {
-        label: '360° Video',
-        iconImage:
-          '//yt3.ggpht.com/fmOS9pbEO9CB6wbhvRsKFKv4h2z7_O3fFm9hgI14FHtxQa2WHlPPKQMPraiVA608d2jvJFyMrg=s88-c-k-c0xffffffff-no-nd-rj',
-        link: '#',
-      },
-    ],
-  },
-  {
-    menus: [
-      {
-        label: 'Browse channels',
-        icon: MdAddCircle,
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'More from youtube',
-    menus: [
-      {
-        label: 'YouTube Premium',
-        icon: FaYoutube,
-        link: '#',
-      },
-      {
-        label: 'Live',
-        icon: BiStation,
-        link: '#',
-      },
-    ],
-  },
-  {
-    menus: [
-      {
-        label: 'Settings',
-        icon: MdSettings,
-        link: '#',
-      },
-      {
-        label: 'Report history',
-        icon: MdFlag,
-        link: '#',
-      },
-      {
-        label: 'Help',
-        icon: MdHelp,
-        link: '#',
-      },
-      {
-        label: 'Send feedback',
-        icon: MdAnnouncement,
-        link: '#',
-      },
-    ],
-  },
-];
 
 interface IInlineMenu {
   link: string;
@@ -202,23 +52,25 @@ const InlineMenu: React.FC<IInlineMenu> = ({ link, children }) => {
 };
 
 const ResponsiveMenus: React.FC = () => {
-  const menus = [...MENUS[0].menus, ...MENUS[1].menus].map((menu, index) => (
-    <Box
-      textAlign="center"
-      key={index}
-      color={menu.active ? 'youtube' : 'gray.600'}
-      py={2}
-    >
-      <Link href={menu.link}>
-        <a>
-          <Box as={menu.icon} size="22px" margin="auto" />
-          <Text fontSize="10px" mt={1}>
-            {menu.label}
-          </Text>
-        </a>
-      </Link>
-    </Box>
-  ));
+  const menus = [...menusData[0].menus, ...menusData[1].menus].map(
+    (menu, index) => (
+      <Box
+        textAlign="center"
+        key={index}
+        color={menu.active ? 'youtube' : 'gray.600'}
+        py={2}
+      >
+        <Link href={menu.link}>
+          <a>
+            <Box as={menu.icon} size="22px" margin="auto" />
+            <Text fontSize="10px" mt={1}>
+              {menu.label}
+            </Text>
+          </a>
+        </Link>
+      </Box>
+    ),
+  );
 
   return (
     <Stack spacing={4} py={4}>
@@ -232,28 +84,13 @@ const Sidebar: React.FC<ISidebar> = ({
   onMinimized,
   isOnDrawer,
 }) => {
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-  }, []);
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useIsomorphicLayoutEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   const handleMinimized = () => {
     onMinimized(!minimized);
   };
 
-  const renderMenus = MENUS.map((groupMenu) => {
+  const renderMenus = menusData.map((groupMenu) => {
     const groupMenuLen = groupMenu.menus.length;
     return groupMenu.menus.map((menu, index) => (
       <>
@@ -307,7 +144,7 @@ const Sidebar: React.FC<ISidebar> = ({
   });
 
   const renderSidebar = () => {
-    if (!isOnDrawer && minimized && windowWidth >= 767) {
+    if (!isOnDrawer && minimized && !isMobile) {
       return (
         <Box
           pos="fixed"
@@ -366,7 +203,7 @@ const Sidebar: React.FC<ISidebar> = ({
     );
   };
 
-  if (isOnDrawer || windowWidth < 767) {
+  if (isOnDrawer || isMobile) {
     return (
       <Drawer placement="left" isOpen={minimized} onClose={handleMinimized}>
         <DrawerOverlay zIndex={2} />

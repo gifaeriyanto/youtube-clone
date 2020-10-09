@@ -20,11 +20,7 @@ import {
 import Logo from '@components/logo';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import {
-  AiFillGithub,
-  AiFillLinkedin,
-  AiFillMediumSquare,
-} from 'react-icons/ai';
+import { AiFillGithub } from 'react-icons/ai';
 import {
   MdAccountCircle,
   MdApps,
