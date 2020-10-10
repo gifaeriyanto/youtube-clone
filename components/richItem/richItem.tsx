@@ -91,7 +91,7 @@ const RichItem: React.FC<IRichItem> = ({
             query: { v: typeof id === 'string' ? id : (id as any).videoId },
           }}
         >
-          <Box cursor="pointer" as="a">
+          <Box cursor="pointer" as="a" w="100%">
             <Flex>
               <Box
                 h="200px"
