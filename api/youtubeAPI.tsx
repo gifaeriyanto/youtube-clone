@@ -1,10 +1,5 @@
 import Axios, { AxiosResponse } from 'axios';
-import {
-  IYoutubeAPIChannels,
-  IYoutubeAPIChannelItem,
-  IYoutubeAPIVideos,
-  IYoutubeAPIVideoItem,
-} from 'interfaces/youtubeAPI';
+import { IYoutubeAPIChannels, IYoutubeAPIVideos } from 'interfaces/youtubeAPI';
 import { useQuery } from 'react-query';
 
 const baseUrl = 'https://www.googleapis.com/youtube/v3/';
@@ -12,21 +7,6 @@ const key = process.env.YOUTUBE_API_KEY;
 
 interface IGetYoutubeVideosParams {
   limit: number;
-}
-
-interface IGetYoutubeChannelsParams {
-  part: string;
-  id?: string;
-  maxResults?: number;
-  myRating?: 'like' | 'dislike';
-}
-
-interface ISearchYoutubeVideosParams {
-  part: string;
-  type: string;
-  id?: string;
-  maxResults?: number;
-  relatedToVideoId?: string;
 }
 
 export const useVideos = ({ limit }: IGetYoutubeVideosParams) => {
