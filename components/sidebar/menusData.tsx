@@ -77,7 +77,7 @@ export const menusData: TMENUS = [
       {
         label: 'Gaming',
         iconImage:
-          '//yt3.ggpht.com/je7LbnIyJTQLS27L6HAE26dvIc98IeyuJZv-xyQz2qpu4xaepg8IyhmC51cHH4s3FmIOaFTP=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/V1bmXP0p2liJXWKzZasQDCNof7knILr6RSjdQAPuRzjY0496wN92xZm66dHxZkfJR02yc3TH6lg=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
       {
