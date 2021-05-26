@@ -65,7 +65,7 @@ export const menusData: TMENUS = [
       {
         label: 'Music',
         iconImage:
-          '//yt3.ggpht.com/X2lg7AJrz6BRu8Lq5S-Ke5XrXIT_le5TlBcS10ik-YO5njQJGRPc4fTlefugAi5ha_3FieqcXQ=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/FokrhvqUDfKcI70TvFhbm-NYCO_qbaCAf7ImwbXZqmq3kFtRMxjx24GRan8_Zwe3ql-wEo690w=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
       {
