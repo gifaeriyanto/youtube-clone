@@ -40,23 +40,26 @@ const Index: NextPage = () => {
             }}
             gap={6}
           >
-            {data.items.map((item, id) => (
-              <RichItem
-                key={id}
-                id={item.id}
-                thumbnail={
-                  item.snippet?.thumbnails?.standard?.url ||
-                  item.snippet?.thumbnails?.medium?.url ||
-                  ''
-                }
-                avatar={item.snippet?.thumbnails?.default?.url || ''}
-                title={item.snippet.title}
-                channelId={item.snippet.channelId}
-                channelTitle={item.snippet.channelTitle}
-                views={Number(item.statistics.viewCount)}
-                publishedAt={item.snippet.publishedAt}
-              />
-            ))}
+            {data.items.map(
+              (item, id) =>
+                item.snippet && (
+                  <RichItem
+                    key={id}
+                    id={item.id}
+                    thumbnail={
+                      item.snippet.thumbnails?.standard?.url ||
+                      item.snippet.thumbnails?.medium?.url ||
+                      ''
+                    }
+                    avatar={item.snippet.thumbnails?.default?.url || ''}
+                    title={item.snippet.title}
+                    channelId={item.snippet.channelId}
+                    channelTitle={item.snippet.channelTitle}
+                    views={Number(item.statistics.viewCount)}
+                    publishedAt={item.snippet.publishedAt}
+                  />
+                ),
+            )}
           </Grid>
         )}
       </MainLayout>

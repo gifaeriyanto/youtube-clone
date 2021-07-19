@@ -22,6 +22,10 @@ interface IVideoPreview {
 }
 
 const VideoPreview: React.FC<IVideoPreview> = ({ width, height, data }) => {
+  if (!data.snippet) {
+    return null;
+  }
+
   return (
     <>
       <YouTube

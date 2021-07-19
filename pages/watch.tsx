@@ -54,7 +54,7 @@ const Index: NextPage = () => {
   return (
     <>
       <Head>
-        {isSuccessVideoData ? (
+        {isSuccessVideoData && videoData.items[0].snippet ? (
           <>
             <title>{videoData.items[0].snippet.title}</title>
             <meta
@@ -106,25 +106,28 @@ const Index: NextPage = () => {
           {
             <Box>
               {isSuccessRelatedVideos &&
-                relatedVideosData.items.map((item, index) => (
-                  <Box mb={4} key={index}>
-                    <RichItem
-                      key={item.id}
-                      id={item.id}
-                      thumbnail={
-                        item.snippet?.thumbnails?.medium?.url ||
-                        item.snippet?.thumbnails?.high?.url ||
-                        ''
-                      }
-                      avatar={item.snippet?.thumbnails?.default?.url || ''}
-                      title={item.snippet.title}
-                      channelId={item.snippet.channelId}
-                      channelTitle={item.snippet.channelTitle}
-                      publishedAt={item.snippet.publishedAt}
-                      variant="list-small"
-                    />
-                  </Box>
-                ))}
+                relatedVideosData.items.map(
+                  (item, index) =>
+                    item.snippet && (
+                      <Box mb={4} key={index}>
+                        <RichItem
+                          key={item.id}
+                          id={item.id}
+                          thumbnail={
+                            item.snippet.thumbnails?.medium?.url ||
+                            item.snippet.thumbnails?.high?.url ||
+                            ''
+                          }
+                          avatar={item.snippet.thumbnails?.default?.url || ''}
+                          title={item.snippet.title}
+                          channelId={item.snippet.channelId}
+                          channelTitle={item.snippet.channelTitle}
+                          publishedAt={item.snippet.publishedAt}
+                          variant="list-small"
+                        />
+                      </Box>
+                    ),
+                )}
             </Box>
           }
         </Grid>

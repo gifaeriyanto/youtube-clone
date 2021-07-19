@@ -10,12 +10,16 @@ interface IChannelPreview {
 const ChannelPreview: React.FC<IChannelPreview> = ({ data }) => {
   const [showMoreDescription, setShowMoreDescription] = useState(false);
 
+  if (!data.snippet) {
+    return;
+  }
+
   return (
     <>
       <Flex alignItems="center" mt={4}>
         <Avatar
           name={data.snippet.title}
-          src={data.snippet?.thumbnails?.default?.url || ''}
+          src={data.snippet.thumbnails?.default?.url || ''}
           mr={4}
           w="36px"
           h="36px"

@@ -52,24 +52,27 @@ const Result: NextPage<IResult> = ({ keyword }) => {
                 <Text fontSize="sm">FILTER</Text>
               </Flex>
               <Divider borderColor="gray.300" />
-              {data.items.map((item, id) => (
-                <RichItem
-                  key={id}
-                  id={item.id}
-                  thumbnail={
-                    item.snippet?.thumbnails?.standard?.url ||
-                    item.snippet?.thumbnails?.medium?.url ||
-                    ''
-                  }
-                  avatar={item.snippet?.thumbnails?.default?.url || ''}
-                  title={item.snippet.title}
-                  channelId={item.snippet.channelId}
-                  channelTitle={item.snippet.channelTitle}
-                  publishedAt={item.snippet.publishedAt}
-                  description={item.snippet.description}
-                  variant="list-large"
-                />
-              ))}
+              {data.items.map(
+                (item, id) =>
+                  item.snippet && (
+                    <RichItem
+                      key={id}
+                      id={item.id}
+                      thumbnail={
+                        item.snippet.thumbnails?.standard?.url ||
+                        item.snippet.thumbnails?.medium?.url ||
+                        ''
+                      }
+                      avatar={item.snippet.thumbnails?.default?.url || ''}
+                      title={item.snippet.title}
+                      channelId={item.snippet.channelId}
+                      channelTitle={item.snippet.channelTitle}
+                      publishedAt={item.snippet.publishedAt}
+                      description={item.snippet.description}
+                      variant="list-large"
+                    />
+                  ),
+              )}
             </VStack>
           </Container>
         )}
