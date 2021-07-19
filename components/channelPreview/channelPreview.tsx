@@ -15,7 +15,7 @@ const ChannelPreview: React.FC<IChannelPreview> = ({ data }) => {
       <Flex alignItems="center" mt={4}>
         <Avatar
           name={data.snippet.title}
-          src={data.snippet.thumbnails?.default.url || ''}
+          src={data.snippet?.thumbnails?.default?.url || ''}
           mr={4}
           w="36px"
           h="36px"

@@ -34,7 +34,7 @@ const RichItem: React.FC<IRichItem> = ({
 
   useEffect(() => {
     if (status === 'success') {
-      setChannelAvatar(data.items[0]?.snippet.thumbnails?.default.url || '');
+      setChannelAvatar(data.items[0]?.snippet?.thumbnails?.default?.url || '');
     }
   }, [data]);
 

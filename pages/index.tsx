@@ -45,11 +45,11 @@ const Index: NextPage = () => {
                 key={id}
                 id={item.id}
                 thumbnail={
-                  item.snippet.thumbnails?.standard?.url ||
-                  item.snippet.thumbnails?.medium?.url ||
+                  item.snippet?.thumbnails?.standard?.url ||
+                  item.snippet?.thumbnails?.medium?.url ||
                   ''
                 }
-                avatar={item.snippet.thumbnails?.default.url || ''}
+                avatar={item.snippet?.thumbnails?.default?.url || ''}
                 title={item.snippet.title}
                 channelId={item.snippet.channelId}
                 channelTitle={item.snippet.channelTitle}
