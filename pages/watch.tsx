@@ -27,16 +27,12 @@ const Index: NextPage = () => {
     data: videoData,
     error,
   } = useVideoDetail(router.query.v as string);
-  const {
-    isSuccess: isSuccessChannelData,
-    data: channelData,
-  } = useChannelDetail(
-    isSuccessVideoData && videoData.items[0].snippet.channelId,
-  );
-  const {
-    isSuccess: isSuccessRelatedVideos,
-    data: relatedVideosData,
-  } = useRelatedVideos(router.query.v as string, { limit: 10 });
+  const { isSuccess: isSuccessChannelData, data: channelData } =
+    useChannelDetail(
+      isSuccessVideoData && videoData.items[0].snippet.channelId,
+    );
+  const { isSuccess: isSuccessRelatedVideos, data: relatedVideosData } =
+    useRelatedVideos(router.query.v as string, { limit: 10 });
 
   const handleResize = () => {
     setVideoHeight(videoWrapper.current.offsetWidth / 1.8);
@@ -116,10 +112,10 @@ const Index: NextPage = () => {
                       key={item.id}
                       id={item.id}
                       thumbnail={
-                        item.snippet.thumbnails.medium?.url ||
-                        item.snippet.thumbnails.high?.url
+                        item.snippet.thumbnails?.medium?.url ||
+                        item.snippet.thumbnails?.high?.url
                       }
-                      avatar={item.snippet.thumbnails.default.url}
+                      avatar={item.snippet.thumbnails?.default.url || ''}
                       title={item.snippet.title}
                       channelId={item.snippet.channelId}
                       channelTitle={item.snippet.channelTitle}
