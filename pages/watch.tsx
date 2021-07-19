@@ -113,7 +113,8 @@ const Index: NextPage = () => {
                       id={item.id}
                       thumbnail={
                         item.snippet.thumbnails?.medium?.url ||
-                        item.snippet.thumbnails?.high?.url
+                        item.snippet.thumbnails?.high?.url ||
+                        ''
                       }
                       avatar={item.snippet.thumbnails?.default.url || ''}
                       title={item.snippet.title}

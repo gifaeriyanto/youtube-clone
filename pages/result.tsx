@@ -58,7 +58,8 @@ const Result: NextPage<IResult> = ({ keyword }) => {
                   id={item.id}
                   thumbnail={
                     item.snippet.thumbnails?.standard?.url ||
-                    item.snippet.thumbnails?.medium?.url
+                    item.snippet.thumbnails?.medium?.url ||
+                    ''
                   }
                   avatar={item.snippet.thumbnails?.default.url || ''}
                   title={item.snippet.title}
