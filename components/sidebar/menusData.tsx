@@ -65,25 +65,31 @@ export const menusData: TMENUS = [
       {
         label: 'Music',
         iconImage:
-          '//yt3.ggpht.com/FokrhvqUDfKcI70TvFhbm-NYCO_qbaCAf7ImwbXZqmq3kFtRMxjx24GRan8_Zwe3ql-wEo690w=s88-c-k-c0x00ffffff-no-rj',
+          '//yt3.ggpht.com/m1NhuiHS_blVntPmWI3jkWYP9GYsnd9jEeEbsJvapSLYK5grq28UenyffytqyTm9g8KuHXLgSrA=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
       {
         label: 'Sports',
         iconImage:
-          '//yt3.ggpht.com/7pEnMBenda_jk32LIvQLyHKseE-G1UtUx0eXUr3sjV6KcRC5H_FSRZxT2votEuqwkjrSHHpF=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/xFktjpNOFh1mAdsJKwVUd1YsyfL5BJ4g75EEetGGGnFWAN3W9zEqamwaGyXhAPDZH3KrTYf5fg=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
       {
         label: 'Gaming',
         iconImage:
-          '//yt3.ggpht.com/V1bmXP0p2liJXWKzZasQDCNof7knILr6RSjdQAPuRzjY0496wN92xZm66dHxZkfJR02yc3TH6lg=s88-c-k-c0x00ffffff-no-rj',
+          '//yt3.ggpht.com/vZF-5iMtaB4LgDQdXbkRO9tppSN_H86Vof5pJtBB9aRl8VF4Zj8FTrpeoGtUMmvakFDZI-BOmg=s88-c-k-c0x00ffffff-no-rj',
+        link: '#',
+      },
+      {
+        label: 'Movies',
+        iconImage:
+          '//yt3.ggpht.com/6lo97rUTO7xhIBXZqLiaW2kA_eMBIEmqc27EqlKLyE4nAY-yzcKBG0Hs0YdUka3gJ629HcwgyzQ=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
       {
         label: 'News',
         iconImage:
-          '//yt3.ggpht.com/RMsRDfy7X7f7Wo3aZEofaZXAqMiyIi8UUZe188kwJ9DJTg8aEWDrqlVW8ktFyKhy9kUmgIR90So=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/bssm4mEw5OtrBUftn8rrcVTiM3mAImsDo8h-WZrUewuae1xiEYXhJod4Rud0TYnh3cGSiyW5aw=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
       {
@@ -95,7 +101,7 @@ export const menusData: TMENUS = [
       {
         label: '360° Video',
         iconImage:
-          '//yt3.ggpht.com/fmOS9pbEO9CB6wbhvRsKFKv4h2z7_O3fFm9hgI14FHtxQa2WHlPPKQMPraiVA608d2jvJFyMrg=s88-c-k-c0xffffffff-no-nd-rj',
+          '//yt3.ggpht.com/cp2sWb0nIgaKQoGzXFUg7zdn4FvPGgReelKLHaKUcawZF3EhbXrTGbNV8z3Vxqlr13Dx97F6=s88-c-k-c0x00ffffff-no-rj',
         link: '#',
       },
     ],
