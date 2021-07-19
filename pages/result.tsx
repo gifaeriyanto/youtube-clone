@@ -52,9 +52,9 @@ const Result: NextPage<IResult> = ({ keyword }) => {
                 <Text fontSize="sm">FILTER</Text>
               </Flex>
               <Divider borderColor="gray.300" />
-              {data.items.map((item) => (
+              {data.items.map((item, id) => (
                 <RichItem
-                  key={item.id}
+                  key={id}
                   id={item.id}
                   thumbnail={
                     item.snippet.thumbnails?.standard?.url ||

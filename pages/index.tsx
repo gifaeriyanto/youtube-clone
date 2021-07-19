@@ -40,9 +40,9 @@ const Index: NextPage = () => {
             }}
             gap={6}
           >
-            {data.items.map((item) => (
+            {data.items.map((item, id) => (
               <RichItem
-                key={item.id}
+                key={id}
                 id={item.id}
                 thumbnail={
                   item.snippet.thumbnails?.standard?.url ||
